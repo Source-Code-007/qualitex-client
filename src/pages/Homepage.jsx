@@ -5,7 +5,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import pdfHeader from "../assets/pdfHeader.png";
-import qrCode from "../assets/qrcode.png";
 import pdfFooter from "../assets/pdfBottom.png";
 import { useLazyGetSingleWorkPermitQuery } from "../redux/api/workPermit/workPermitApi";
 
@@ -254,11 +253,11 @@ const Homepage = () => {
               {/* PDF footer */}
               <div className="text-[16px]">
                 <div className="flex justify-between items-center gap-2 my-6">
-                  <img
+                  {/* <img
                     src={qrCode}
                     alt="Serbia eVisa portal"
                     className="h-[140px] w-[140px]"
-                  />
+                  /> */}
 
                   <div className="!font-semibold text-black text-left space-y-4">
                     <p

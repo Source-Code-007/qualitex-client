@@ -35,33 +35,33 @@ const WorkPermitDetailsModal = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <strong className="block text-gray-800">Name:</strong>
-            <p className="text-gray-600">{tootajaTeave.nimi}</p>
+            <p className="text-gray-600">{tootajaTeave?.nimi}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Father{"'"}s Name:</strong>
-            <p className="text-gray-600">{tootajaTeave.isaNimi}</p>
+            <p className="text-gray-600">{tootajaTeave?.isaNimi}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Mother{"'"}s Name:</strong>
-            <p className="text-gray-600">{tootajaTeave.emainimi}</p>
+            <p className="text-gray-600">{tootajaTeave?.emainimi}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Date of Birth:</strong>
             <p className="text-gray-600">
-              {tootajaTeave.sunnipaev}
+              {tootajaTeave?.sunnipaev}
             </p>
           </div>
           <div>
             <strong className="block text-gray-800">Passport Number:</strong>
-            <p className="text-gray-600">{tootajaTeave.passiNumber}</p>
+            <p className="text-gray-600">{tootajaTeave?.passiNumber}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Permanent Address:</strong>
-            <p className="text-gray-600">{tootajaTeave.pusivAadress}</p>
+            <p className="text-gray-600">{tootajaTeave?.pusivAadress}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Email:</strong>
-            <p className="text-gray-600">{tootajaTeave.ePost}</p>
+            <p className="text-gray-600">{tootajaTeave?.ePost}</p>
           </div>
         </div>
       </div>
@@ -72,30 +72,30 @@ const WorkPermitDetailsModal = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <strong className="block text-gray-800">Position:</strong>
-            <p className="text-gray-600">{tooandmiseDetailid.ametikoht}</p>
+            <p className="text-gray-600">{tooandmiseDetailid?.ametikoht}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Job Description:</strong>
-            <p className="text-gray-600">{tooandmiseDetailid.tooKirjeldus}</p>
+            <p className="text-gray-600">{tooandmiseDetailid?.tooKirjeldus}</p>
           </div>
           <div>
             <strong className="block text-gray-800">
               Contract Start Date:
             </strong>
             <p className="text-gray-600">
-              {tooandmiseDetailid.contractStartDate}
+              {tooandmiseDetailid?.contractStartDate}
             </p>
           </div>
           <div>
             <strong className="block text-gray-800">Contract End Date:</strong>
             <p className="text-gray-600">
-              {tooandmiseDetailid.contractEndDate}
+              {tooandmiseDetailid?.contractEndDate}
             </p>
           </div>
           <div>
             <strong className="block text-gray-800">Monthly Salary:</strong>
             <p className="text-gray-600">
-              {tooandmiseDetailid.palkJaKasu.kuuPalk}
+              {tooandmiseDetailid?.palkJaKasu?.kuuPalk}
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@ const WorkPermitDetailsModal = ({
               Work Permit Start Date:
             </strong>
             <p className="text-gray-600">
-              {moment(tooloaDetailid.workPermitStartDate).format("DD-MM-YYYY")}
+              {tooloaDetailid?.workPermitStartDate}
             </p>
           </div>
           <div>
@@ -118,7 +118,7 @@ const WorkPermitDetailsModal = ({
               Work Permit End Date:
             </strong>
             <p className="text-gray-600">
-              {moment(tooloaDetailid.workPermitEndDate).format("DD-MM-YYYY")}
+              {tooloaDetailid?.workPermitEndDate}
             </p>
           </div>
         </div>

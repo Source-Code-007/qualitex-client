@@ -28,7 +28,6 @@ const WorkPermitModal = ({
   }, [form, editingWorkPermit]);
 
   const handleCreateWorkPermit = async (values) => {
-    values.lubaNr = "1234";
     try {
       const result = await createWorkPermit(values).unwrap();
       if (result?.success) {
@@ -71,7 +70,6 @@ const WorkPermitModal = ({
     <Modal
       open={modalVisible}
       onCancel={() => {
-        console.log("test");
         form.resetFields();
         setEditingWorkPermit(null);
         setModalVisible(false);
@@ -91,6 +89,18 @@ const WorkPermitModal = ({
           editingWorkPermit ? handleUpdateWorkPermit : handleCreateWorkPermit
         }
       >
+        {/* Header */}
+        <div>
+          <h3 className="text-lg font-semibold mb-2">Header</h3>
+          <MyInp
+            name={"barcodeText"}
+            rules={[{ required: true, message: "Please input barcode text!" }]}
+            label="Barcode text"
+            placeholder="Enter barcode text"
+            type="textarea"
+            size="large"
+          />
+        </div>
         {/* Employee Information */}
         <div>
           <h3 className="text-lg font-semibold mb-2">Employee Information</h3>
