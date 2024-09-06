@@ -4,20 +4,20 @@ import { RiVisaFill } from "react-icons/ri";
 import { FaAngleRight } from "react-icons/fa";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import pdfHeader from "../assets/pdfHeader.png";
+import pdfHeader from "../../src/assets/pdfHeader.png";
 import pdfFooter from "../assets/pdfBottom.png";
 import { useLazyGetSingleWorkPermitQuery } from "../redux/api/workPermit/workPermitApi";
 
 const Homepage = () => {
   const [form] = Form.useForm();
-  const [getSingleVisa, { data, isLoading }] =
+  const [getSigleWorkPermit, { data, isLoading }] =
     useLazyGetSingleWorkPermitQuery();
-  const visaData = data?.data || {};
+  const workPermitData = data?.data || {};
 
   const printContentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => printContentRef.current,
-    documentTitle: `serbia-evisa-portal-${visaData?.eVisaId}`,
+    documentTitle: `serbia-evisa-portal-${workPermitData?.eVisaId}`,
     // onBeforePrint: () => {console.log("before printing...");},
     // onAfterPrint: () => {console.log("after printing...");},
     removeAfterPrint: false,
@@ -25,16 +25,16 @@ const Homepage = () => {
 
   const handleSubmitId = async ({ id }) => {
     try {
-      const visa = await getSingleVisa(id).unwrap();
-      if (visa.success) {
-        message.success(visa.message);
+      const workPermit = await getSigleWorkPermit(id).unwrap();
+      if (workPermit.success) {
+        message.success(workPermit.message);
       }
     } catch (e) {
       message.error(e.data?.message);
     }
   };
 
-  const fullName = `${visaData.surName}<<${visaData.name
+  const fullName = `${workPermitData.surName}<<${workPermitData.name
     ?.split(" ")
     ?.join("<")}`;
   const minLength = 35; // or whatever minimum length is required for the first line to be full
@@ -43,6 +43,7 @@ const Homepage = () => {
 
   return (
     <Container>
+      
       {!data ? (
         <div className="my-4 mb-8 !px-[20px] sm:!px-[50px] md:!px-[110px] p-8 rounded-md border border-primary pb-[120px]">
           <div className="flex gap-2 items-center">
@@ -50,7 +51,7 @@ const Homepage = () => {
               <RiVisaFill />
             </span>
             <h2 className="flex-1 border-b border-primary text-xl text-primary font-semibold">
-              Portal of Serbia e-Visa
+              Portal of Qualitex
             </h2>
           </div>
 
@@ -87,7 +88,7 @@ const Homepage = () => {
       ) : (
         <div className="my-4 mb-8 !px-[20px] sm:!px-[50px] md:!px-[110px] p-8 rounded-md border border-primary flex items-center justify-center">
           <div className="text-center">
-            <h2 className="font-bold text-xl">Your visa is ready to view!</h2>
+            <h2 className="font-bold text-xl">Your work permit is ready to view!</h2>
             <button
               type="submit"
               onClick={() => {
@@ -128,13 +129,13 @@ const Homepage = () => {
                         ид апликације/ <br />
                         Application ID
                       </h2>
-                      <p>{visaData.applicationId}</p>
+                      <p>{workPermitData.applicationId}</p>
                     </div>
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
                         Датум подношења захтева/ <br /> Date of Application
                       </h2>
-                      <p>{visaData.dateOfApplication}</p>
+                      <p>{workPermitData.dateOfApplication}</p>
                     </div>
 
                     <h2 className="font-bold leading-[16px]">
@@ -144,21 +145,21 @@ const Homepage = () => {
 
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px]">Презиме/ Surname</h2>
-                      <p>{visaData.surName}</p>
+                      <p>{workPermitData.surName}</p>
                     </div>
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px]">Име / Given name(s)</h2>
-                      <p>{visaData.name}</p>
+                      <p>{workPermitData.name}</p>
                     </div>
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px]">
                         Датум рођења / Date of birth(s)
                       </h2>
-                      <p>{visaData.dob}</p>
+                      <p>{workPermitData.dob}</p>
                     </div>
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px]">Сек / Sex</h2>
-                      <p>{visaData.sex}</p>
+                      <p>{workPermitData.sex}</p>
                     </div>
                     <div className="flex gap-4">
                       <h2 className="bg-gray w-[280px]">
@@ -171,13 +172,13 @@ const Homepage = () => {
                         Број путне исправе / <br />
                         Travel document number
                       </h2>
-                      <p>{visaData.travelDocumentNumber}</p>
+                      <p>{workPermitData.travelDocumentNumber}</p>
                     </div>
                   </div>
 
                   <img
                     src={
-                      visaData?.userImg ||
+                      workPermitData?.userImg ||
                       'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'
                     }
                     className="h-[180px] w-[145px]  border-2 border-slate-700"
@@ -194,15 +195,15 @@ const Homepage = () => {
                       Важење е-визе / E-visa validity
                     </h2>
                     <div className="flex items-center gap-8">
-                      <p>{visaData.validityStart}</p>
-                      <p>{visaData.validityEnd}</p>
+                      <p>{workPermitData.validityStart}</p>
+                      <p>{workPermitData.validityEnd}</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
                       Трајање боравка (дана) / <br /> Duration of stay (days)
                     </h2>
-                    <p>{visaData.duration}</p>
+                    <p>{workPermitData.duration}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
@@ -210,7 +211,7 @@ const Homepage = () => {
                       Број уноса / <br />
                       Number of Entries
                     </h2>
-                    <p>{visaData.numberOfentries}</p>
+                    <p>{workPermitData.numberOfentries}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
@@ -223,7 +224,7 @@ const Homepage = () => {
                       Број одлуке о додели е-визе / <br /> E-visa grant decision
                       number
                     </h2>
-                    <p>{visaData.grantDecisionNumber}</p>
+                    <p>{workPermitData.grantDecisionNumber}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
@@ -231,21 +232,21 @@ const Homepage = () => {
                       Датум одлуке о додели е-визе / <br /> E-visa grant
                       decision date
                     </h2>
-                    <p>{visaData.grantDecisionDate}</p>
+                    <p>{workPermitData.grantDecisionDate}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px]">
                       {" "}
                       Е-виза Ид / E-visa ID
                     </h2>
-                    <p>{visaData.eVisaId}</p>
+                    <p>{workPermitData.eVisaId}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">
                       код за верификацију е-визе / <br /> E-visa Verification
                       Code
                     </h2>
-                    <p>{visaData.eVisaVerificationCode}</p>
+                    <p>{workPermitData.eVisaVerificationCode}</p>
                   </div>
                 </div>
               </div>
@@ -281,7 +282,7 @@ const Homepage = () => {
                       {/* V{"<"}BGD {visaData.surName}{"<<"}{visaData.name?.split(' ').join('<')}{"<<<<<<<<<<<<<"} */}
                       {`V<BGD${fullName}${fillString}`}
                       <br />
-                      {visaData.passportNumber}
+                      {workPermitData.passportNumber}
                     </p>
                   </div>
                 </div>

@@ -27,6 +27,7 @@ import logo from "../../../assets/logo.png";
 import sigOne from "../../../assets/sig_1.png";
 import sigTwo from "../../../assets/sig_2.png";
 import Barcode from "react-barcode";
+import QRCode from "react-qr-code";
 
 const WorkPermit = () => {
   const { Search } = Input;
@@ -158,7 +159,6 @@ const WorkPermit = () => {
     removeAfterPrint: false,
   });
 
-  console.log(printWorkPermit, "printWordPermit");
 
   return (
     <div className="p-8">
@@ -232,17 +232,16 @@ const WorkPermit = () => {
           return (
             <div
               key={ind}
-              className={`absolute ${
-                elem === 1
-                  ? "top-[40vh]"
+              className={`absolute ${elem === 1
+                  ? "top-[43vh]"
                   : elem === 2
-                  ? "top-[140vh]"
-                  : elem === 3
-                  ? "top-[240vh]"
-                  : elem === 4
-                  ? "top-[340vh]"
-                  : "top-[440vh]"
-              }  flex items-center justify-center pointer-events-none`}
+                    ? "top-[140vh]"
+                    : elem === 3
+                      ? "top-[240vh]"
+                      : elem === 4
+                        ? "top-[340vh]"
+                        : "top-[440vh]"
+                }  flex items-center justify-center pointer-events-none`}
             >
               <img src={logo} alt="" className="opacity-15 w-4/6 mx-auto" />
             </div>
@@ -258,15 +257,22 @@ const WorkPermit = () => {
                 printWorkPermit?.barcodeText ||
                 `Hello, ${printWorkPermit?.tootajaTeave?.nimi}`
               }
-              width={1}
-              height={30}
               displayValue={false}
-              af
+              width={3}
+              height={50}
             /> */}
-            <Barcode
-              value="http://github.com/kciter"
-            />
-            ,
+            <div style={{ height: "auto", marginLeft: "auto", maxWidth: 120, width: "100%" }}>
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={
+                  printWorkPermit?.barcodeText ||
+                  `Hello, ${printWorkPermit?.tootajaTeave?.nimi}`
+                }
+                viewBox={`0 0 256 256`}
+              />
+            </div>
+
           </Row>
 
           {/* Sub header */}

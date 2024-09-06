@@ -11,7 +11,7 @@ const WorkPermitDetailsModal = ({
     return null; // Return null if no work permit data is provided
   }
 
-  const { lubaNr, tootajaTeave, tooandmiseDetailid, tooloaDetailid } =
+  const {barcodeText, lubaNr, tootajaTeave, tooandmiseDetailid, tooloaDetailid } =
     workPermitData || {};
 
   return (
@@ -27,6 +27,10 @@ const WorkPermitDetailsModal = ({
       <h3 className="text-xl font-semibold mb-4">Work Permit Details</h3>
       <p className="text-gray-800">
         <strong>Luba Number:</strong> {lubaNr}
+      </p>
+
+      <p className="text-gray-800">
+        <strong>Barcode text:</strong> {barcodeText}
       </p>
 
       {/* Employee Information Section */}

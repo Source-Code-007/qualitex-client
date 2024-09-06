@@ -1,10 +1,11 @@
 import Container from "../Components/ui/Container";
+import pdfHeader from '../../src/assets/pdfHeader.png'
 
 const Navbar = () => {
 
   return (
     <Container>
-    <img className="h-auto w-full" src="https://newdelhi.mfa.gov.rs.odock.in/img/header.jpg" alt="serbia-evisa-portal" />
+    <img className="h-auto w-full" src={pdfHeader} alt="serbia-evisa-portal" />
     </Container>
   );
 };
