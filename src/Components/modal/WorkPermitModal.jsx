@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { Button, Form, message, Modal } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   useCreateWorkPermitMutation,
   useUpdateWorkPermitMutation,
@@ -29,7 +30,10 @@ const WorkPermitModal = ({
 
   const handleCreateWorkPermit = async (values) => {
     try {
-      const result = await createWorkPermit(values).unwrap();
+      const result = await createWorkPermit({
+        ...values,
+        barcodeText: values?.tootajaTeave?.nimi,
+      }).unwrap();
       if (result?.success) {
         message.success(result?.message);
       } else {
@@ -40,7 +44,10 @@ const WorkPermitModal = ({
       form.resetFields();
     } catch (e) {
       message.error(
-        e?.data?.message || e?.message || "Failed to add work permit"
+        `${e?.data?.errorSources?.[0]?.path} - ${e?.data?.errorSources?.[0]?.message}` ||
+          e?.data?.message ||
+          e?.message ||
+          "Failed to update work permit"
       );
     }
   };
@@ -61,7 +68,10 @@ const WorkPermitModal = ({
       form.resetFields();
     } catch (error) {
       message.error(
-        error?.data?.message || error?.message || "Failed to update work permit"
+        `${error?.data?.errorSources?.[0]?.path} - ${error?.data?.errorSources?.[0]?.message}` ||
+          error?.data?.message ||
+          error?.message ||
+          "Failed to update work permit"
       );
     }
   };
@@ -90,7 +100,7 @@ const WorkPermitModal = ({
         }
       >
         {/* Header */}
-        <div>
+        {/* <div>
           <h3 className="text-lg font-semibold mb-2">Header</h3>
           <MyInp
             name={"barcodeText"}
@@ -100,7 +110,7 @@ const WorkPermitModal = ({
             type="textarea"
             size="large"
           />
-        </div>
+        </div> */}
         {/* Employee Information */}
         <div>
           <h3 className="text-lg font-semibold mb-2">Employee Information</h3>

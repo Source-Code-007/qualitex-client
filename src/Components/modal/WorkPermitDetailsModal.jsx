@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Modal } from "antd";
-import moment from "moment";
 
 const WorkPermitDetailsModal = ({
   detailsModalVisible,
@@ -11,8 +10,13 @@ const WorkPermitDetailsModal = ({
     return null; // Return null if no work permit data is provided
   }
 
-  const {barcodeText, lubaNr, tootajaTeave, tooandmiseDetailid, tooloaDetailid } =
-    workPermitData || {};
+  const {
+    barcodeText,
+    lubaNr,
+    tootajaTeave,
+    tooandmiseDetailid,
+    tooloaDetailid,
+  } = workPermitData || {};
 
   return (
     <Modal
@@ -31,6 +35,7 @@ const WorkPermitDetailsModal = ({
 
       <p className="text-gray-800">
         <strong>Barcode text:</strong> {barcodeText}
+        {/* TODO: Add barcode here */}
       </p>
 
       {/* Employee Information Section */}
@@ -51,9 +56,7 @@ const WorkPermitDetailsModal = ({
           </div>
           <div>
             <strong className="block text-gray-800">Date of Birth:</strong>
-            <p className="text-gray-600">
-              {tootajaTeave?.sunnipaev}
-            </p>
+            <p className="text-gray-600">{tootajaTeave?.sunnipaev}</p>
           </div>
           <div>
             <strong className="block text-gray-800">Passport Number:</strong>
@@ -121,9 +124,7 @@ const WorkPermitDetailsModal = ({
             <strong className="block text-gray-800">
               Work Permit End Date:
             </strong>
-            <p className="text-gray-600">
-              {tooloaDetailid?.workPermitEndDate}
-            </p>
+            <p className="text-gray-600">{tooloaDetailid?.workPermitEndDate}</p>
           </div>
         </div>
       </div>
@@ -131,4 +132,4 @@ const WorkPermitDetailsModal = ({
   );
 };
 
-export default WorkPermitDetailsModal
+export default WorkPermitDetailsModal;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FaClock, FaHome } from "react-icons/fa";
 import { Layout, Menu } from "antd";
 import moment from "moment";
@@ -51,11 +51,13 @@ const DashboardLayout = () => {
         <Menu theme="light">
           <div>
             <div className=" flex justify-center mt-5">
-              <img
-                src={logo}
-                alt="Qualitex"
-                className="inline-block !w-[150px] h-auto !mt-[8px]"
-              />
+              <Link to={"/"}>
+                <img
+                  src={logo}
+                  alt="Qualitex"
+                  className="inline-block !w-[150px] h-auto !mt-[8px]"
+                />
+              </Link>
             </div>
           </div>
         </Menu>
@@ -79,7 +81,6 @@ const DashboardLayout = () => {
       //   marginLeft: 200,
       // }}
       >
-
         <Content>
           <div
             style={{
